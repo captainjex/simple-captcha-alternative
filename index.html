@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <title>Slider Captcha Alternative</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-container>
+          Buktikan kau manusia
+          <v-layout>
+            <v-flex xs12>
+              {{ num1 }} + {{ num2 }} = {{ numResult }}
+              <v-slider :max="20" v-model="numResult"></v-slider>
+              <v-btn color="blue" :disabled="!isValid" :dark="isValid">Submit</v-btn>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-content>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        num1: 1,
+        num2: 1,
+        numResult: 1
+      },
+      computed: {
+        isValid () {
+          return this.num1 + this.num2 == this.numResult
+        }
+      },
+      mounted: function () {
+        this.num1 = Math.floor(Math.random() * 10);
+        this.num2 = Math.floor(Math.random() * 10);
+      }
+    })
+  </script>
+</body>
+
+</html>
